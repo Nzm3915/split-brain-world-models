@@ -1,0 +1,6 @@
+trained conv A 0.0164 (latent 12), mlp B 0.0133 (latent 20)  [41 s]
+  nuisance 0.0: k=6 corr 0.0474 proc 0.0586 inte 0.0598 | k=12 corr 0.0229 proc 0.0351 inte 0.0347
+  nuisance 1.0: k=6 corr 0.0501 proc 0.0593 inte 0.0598 | k=12 corr 0.0289 proc 0.0402 inte 0.0347
+  nuisance 2.0: k=6 corr 0.0565 proc 0.0653 inte 0.0598 | k=12 corr 0.0355 proc 0.0463 inte 0.0347
+  nuisance 4.0: k=6 corr 0.0595 proc 0.0691 inte 0.0598 | k=12 corr 0.0409 proc 0.0499 inte 0.0347
+own A 0.0164  own B 0.0140  blank 0.0706
