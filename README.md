@@ -30,6 +30,7 @@ DRIVE_AMP=0.15 python prototype/bmi_calibration.py prototype/results 16   #   co
 python prototype/aux_objective.py prototype/results/aux 3000      # H13: does the training objective decide what the link carries?
 python prototype/routing.py prototype/results 600                 # H8: connect a separately trained "machine" hemisphere
 python prototype/recovery.py prototype/results               # T7: recovery after silencing one hemisphere
+python prototype/benchmark.py prototype/results              # all five benchmark numbers for every saved model
 python prototype/export_demo.py prototype/results demo/frames.json 6      # frames for the demo page
 python prototype/toy_overlap.py prototype/results/overlap 3000 2   # H7 in a world with common input (overlapping midline strip)
 python prototype/run_seeds.py prototype/results/seeds 3000        # replication over training seeds
