@@ -1,0 +1,16 @@
+/home/claude/split-brain-world-models/prototype/stitch_frozen.py:75: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  return m, float(loss)
+trained: A 0.0120  B 0.0119  [27 s]
+  rank  2: correlational 0.06667  procrustes 0.06858  interventional 0.06641
+  rank  4: correlational 0.05852  procrustes 0.06330  interventional 0.06075
+  rank  8: correlational 0.04065  procrustes 0.05240  interventional 0.04510
+  rank 16: correlational 0.02099  procrustes 0.02337  interventional 0.02028
+nuisance         0.60000
+own_A            0.01221
+own_B            0.01229
+blank            0.07064
+rank             4
+latent           16
+identity         0.14325
+by_rank          {2: {'correlational': 0.0666675865650177, 'procrustes': 0.0685807317495346, 'interventional': 0.06641438603401184}, 4: {'correlational': 0.058520954102277756, 'procrustes': 0.06329713016748428, 'interventional': 0.06074563413858414}, 8: {'correlational': 0.04064984247088432, 'procrustes': 0.05240184813737869, 'interventional': 0.04509773850440979}, 16: {'correlational': 0.02099396102130413, 'procrustes': 0.02336721122264862, 'interventional': 0.020279988646507263}}

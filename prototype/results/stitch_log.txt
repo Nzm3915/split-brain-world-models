@@ -1,0 +1,22 @@
+/home/claude/split-brain-world-models/prototype/stitch_frozen.py:75: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  return m, float(loss)
+trained: A 0.0120  B 0.0119  [32 s]
+  nuisance 0.0: k=8 corr 0.0420 proc 0.0485 inte 0.0442 | k=16 corr 0.0187 proc 0.0209 inte 0.0202
+  nuisance 0.5: k=8 corr 0.0404 proc 0.0530 inte 0.0451 | k=16 corr 0.0202 proc 0.0222 inte 0.0203
+  nuisance 1.0: k=8 corr 0.0423 proc 0.0487 inte 0.0437 | k=16 corr 0.0241 proc 0.0299 inte 0.0202
+  nuisance 2.0: k=8 corr 0.0450 proc 0.0586 inte 0.0451 | k=16 corr 0.0287 proc 0.0395 inte 0.0202
+  nuisance 4.0: k=8 corr 0.0454 proc 0.0532 inte 0.0448 | k=16 corr 0.0311 proc 0.0426 inte 0.0206
+  rank  2: correlational 0.06686  procrustes 0.06492  interventional 0.06641
+  rank  4: correlational 0.05749  procrustes 0.06040  interventional 0.06098
+  rank  8: correlational 0.04203  procrustes 0.04848  interventional 0.04477
+  rank 16: correlational 0.01866  procrustes 0.02093  interventional 0.02027
+nuisance         0.00000
+own_A            0.01221
+own_B            0.01229
+blank            0.07064
+rank             4
+latent           16
+identity         0.14325
+by_nuisance      {0.0: {8: {'correlational': 0.04202955216169357, 'procrustes': 0.04847754165530205, 'interventional': 0.04422219470143318}, 16: {'correlational': 0.018662750720977783, 'procrustes': 0.020934592932462692, 'interventional': 0.020217498764395714}}, 0.5: {8: {'correlational': 0.040423955768346786, 'procrustes': 0.05300664156675339, 'interventional': 0.04509730637073517}, 16: {'correlational': 0.020229192450642586, 'procrustes': 0.02223488874733448, 'interventional': 0.020277535542845726}}, 1.0: {8: {'correlational': 0.04227735474705696, 'procrustes': 0.04869770631194115, 'interventional': 0.04366860166192055}, 16: {'correlational': 0.024097230285406113, 'procrustes': 0.029887497425079346, 'interventional': 0.020237868651747704}}, 2.0: {8: {'correlational': 0.04503200948238373, 'procrustes': 0.058596886694431305, 'interventional': 0.045147091150283813}, 16: {'correlational': 0.028662458062171936, 'procrustes': 0.03949235752224922, 'interventional': 0.020222630351781845}}, 4.0: {8: {'correlational': 0.04539785906672478, 'procrustes': 0.053209662437438965, 'interventional': 0.044796910136938095}, 16: {'correlational': 0.031130477786064148, 'procrustes': 0.04259268939495087, 'interventional': 0.020556945353746414}}}
+by_rank          {2: {'correlational': 0.06685939431190491, 'procrustes': 0.06491933017969131, 'interventional': 0.06641148030757904}, 4: {'correlational': 0.05748778581619263, 'procrustes': 0.060399096459150314, 'interventional': 0.06098034605383873}, 8: {'correlational': 0.04202955216169357, 'procrustes': 0.04847754165530205, 'interventional': 0.04477054625749588}, 16: {'correlational': 0.018662750720977783, 'procrustes': 0.020934592932462692, 'interventional': 0.020269129425287247}}
