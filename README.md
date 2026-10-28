@@ -12,6 +12,13 @@ consistent world? A computational testbed for Watanabe's subjective test of mach
   the split-brain benchmark, hypotheses with falsification criteria, and the results of a CPU prototype.
   Replaces the earlier `research_plan.md` (in the git history).
 
+## Demo
+
+`demo/index.html` plays the trained models frame by frame: the world on top, each hemisphere's prediction below,
+with the midline crossing marked. Switch between intact / thin link / cut / correlation-calibrated BMI /
+intervention-calibrated BMI, and between wake and the open-loop "dream". Frames are exported by
+`prototype/export_demo.py`.
+
 ## Prototype (`prototype/`, CPU, minutes per model)
 
 ```
@@ -22,6 +29,7 @@ python prototype/bmi_calibration.py prototype/results 16          # cut the link
 DRIVE_AMP=0.15 python prototype/bmi_calibration.py prototype/results 16   #   correlation- vs intervention-calibrated
 python prototype/aux_objective.py prototype/results/aux 3000      # H13: does the training objective decide what the link carries?
 python prototype/routing.py prototype/results 600                 # H8: connect a separately trained "machine" hemisphere
+python prototype/export_demo.py prototype/results demo/frames.json 6      # frames for the demo page
 python prototype/toy_overlap.py prototype/results/overlap 3000 2   # H7 in a world with common input (overlapping midline strip)
 python prototype/run_seeds.py prototype/results/seeds 3000        # replication over training seeds
 ```

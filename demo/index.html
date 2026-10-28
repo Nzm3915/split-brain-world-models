@@ -1,0 +1,200 @@
+<title>Split-Brain Scope</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Public+Sans:wght@400;600&family=Spline+Sans+Mono:wght@400;600&display=swap">
+<style>
+/* layout: one column; instrument strip (world / two hemispheres) above a controls rail and a measures block */
+:root{
+  --bg:#f4f3f0; --panel:#fbfaf8; --ink:#1d1f25; --ink-soft:#5f6470; --rule:#ddd9d2;
+  --left:#2f5fa8; --right:#c2622a; --good:#2f7d5c; --bad:#a93b32;
+  --t1:#2f5fa8; --t2:#c2622a; --t3:#6b4d9c; --t4:#2f7d5c;
+  --serif:"Newsreader",Georgia,"Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Public Sans","Hiragino Sans","Noto Sans JP","Yu Gothic",system-ui,sans-serif;
+  --mono:"Spline Sans Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#13151a; --panel:#1b1e25; --ink:#eceae5; --ink-soft:#9aa0ad; --rule:#2e323b;
+  --left:#6f9fe0; --right:#e89155; --good:#5cb48c; --bad:#e07a71;
+  --t1:#6f9fe0; --t2:#e89155; --t3:#a98ddb; --t4:#5cb48c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13151a; --panel:#1b1e25; --ink:#eceae5; --ink-soft:#9aa0ad; --rule:#2e323b;
+  --left:#6f9fe0; --right:#e89155; --good:#5cb48c; --bad:#e07a71;
+  --t1:#6f9fe0; --t2:#e89155; --t3:#a98ddb; --t4:#5cb48c; color-scheme:dark}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:28px 48px}
+.wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,4.6vw,2.5rem);line-height:1.15;margin:0;text-wrap:balance}
+.lede{margin:0;color:var(--ink-soft);max-width:60ch}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0}
+.scope{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.rowlabel{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--ink-soft)}
+.strip{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;min-width:0}
+.cell{aspect-ratio:1;border-radius:2px;background:color-mix(in oklab,var(--ink) 7%,transparent);position:relative}
+.cell.mid-l{box-shadow:inset -1px 0 0 var(--rule)}
+.half{position:relative}
+.halves{display:grid;grid-template-columns:1fr 1fr;gap:10px;min-width:0}
+.hemi{display:flex;flex-direction:column;gap:6px;min-width:0}
+.hemi .strip{grid-template-columns:repeat(12,1fr)}
+.hemi h3{margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;font-weight:600}
+.hemi.l h3{color:var(--left)} .hemi.r h3{color:var(--right)}
+.miss{outline:2px solid var(--bad);outline-offset:-2px}
+.hit{outline:2px solid var(--good);outline-offset:-2px}
+.rail{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{font-family:var(--sans);font-size:.85rem;color:var(--ink);background:var(--panel);border:1px solid var(--rule);
+  border-radius:999px;padding:7px 13px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible{outline:2px solid var(--left);outline-offset:2px}
+.note{background:var(--panel);border-left:3px solid var(--left);border-radius:0 8px 8px 0;padding:12px 14px;margin:0;color:var(--ink-soft)}
+.note b{color:var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:.85rem}
+th,td{text-align:right;padding:7px 8px;border-bottom:1px solid var(--rule);font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+thead th{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
+tr.on td{background:color-mix(in oklab,var(--left) 12%,transparent)}
+.bar{height:6px;border-radius:3px;background:color-mix(in oklab,var(--ink) 10%,transparent);position:relative;min-width:54px}
+.bar i{position:absolute;inset:0 auto 0 0;border-radius:3px;background:var(--left)}
+.scroller{overflow-x:auto}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:.7rem;color:var(--ink-soft)}
+.swatch{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:baseline}
+.foot{color:var(--ink-soft);font-size:.82rem}
+a{color:var(--left)}
+@media (max-width:460px){.halves{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <p class="eyebrow">分離脳ワールドモデル・試作</p>
+    <h1>二つの世界モデルは、一つの世界を描けるか</h1>
+    <p class="lede">左右半分ずつの視野だけを見る二つの予測モデル。細いリンクを切ったり、BMI でつなぎ直したりすると、
+      正中線を越える物体の予測がどう変わるかを、そのまま動かして見る。上段が実際の世界、下段が各半球が「次の瞬間こうなる」と予測した像。</p>
+  </header>
+
+  <div class="scope">
+    <div class="rowlabel"><span>世界（24画素・正中線で左右に分かれる）</span><span id="stepbox">step 0 / 30</span></div>
+    <div class="strip" id="world"></div>
+    <div class="halves">
+      <div class="hemi l">
+        <h3>左半球の予測（左視野だけを見ている）</h3>
+        <div class="strip" id="predL"></div>
+      </div>
+      <div class="hemi r">
+        <h3>右半球の予測（右視野だけを見ている）</h3>
+        <div class="strip" id="predR"></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--t1)"></i>種類1</span>
+      <span><i class="swatch" style="background:var(--t2)"></i>種類2</span>
+      <span><i class="swatch" style="background:var(--t3)"></i>種類3</span>
+      <span><i class="swatch" style="background:var(--t4)"></i>種類4</span>
+      <span><i class="swatch" style="outline:2px solid var(--good);outline-offset:-2px;background:transparent"></i>境界を越えて正しく渡った</span>
+      <span><i class="swatch" style="outline:2px solid var(--bad);outline-offset:-2px;background:transparent"></i>渡らなかった</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <p class="eyebrow">条件</p>
+    <div class="rail" id="conds"></div>
+    <div class="rail" style="margin-top:2px">
+      <button id="mode" aria-pressed="false">観測を断つ（夢）</button>
+      <button id="play" aria-pressed="true">一時停止</button>
+      <button id="slow" aria-pressed="false">ゆっくり</button>
+      <span class="foot" id="trialbox"></span>
+      <button id="trial">別の試行</button>
+    </div>
+    <p class="note" id="explain"></p>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <p class="eyebrow">測った値（学習に使っていない1,000試行、リンク16次元の脳）</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>条件</th><th>正中線の誤差比</th><th>起きている間の一貫性</th><th>夢の中の一貫性</th><th></th></tr></thead>
+        <tbody id="measures"></tbody>
+      </table>
+    </div>
+    <p class="foot">誤差比は「反対の視野から物体が入ってくる瞬間の予測誤差 ÷ ふだんの誤差」で、1 なら完全に予期できている。
+      一貫性は、正中線を越える物体を受け手が同じ種類で描いた割合。</p>
+  </div>
+
+  <p class="foot">コード・計画書：<a href="https://github.com/Nzm3915/split-brain-world-models">Nzm3915/split-brain-world-models</a>
+    先行するマウスの研究：<a href="https://github.com/Nzm3915/callosal-dims">Nzm3915/callosal-dims</a></p>
+</div>
+
+<script>
+const W = 12, NC = 24;
+const TYPE = ['','var(--t1)','var(--t2)','var(--t3)','var(--t4)'];
+const CONDS = [
+  {k:'intact',  n:'健常（リンク16次元）', t:'元のまま。正中線を越える物体は、渡ってきた側の半球も先に描ける。', m:[1.38,0.49,0.46]},
+  {k:'link1',   n:'細いリンク（1次元）',  t:'リンクを1次元に絞ると、越えてくる物体の予測が目に見えて鈍る。', m:[2.96,0.26,0.32]},
+  {k:'link4',   n:'4次元',               t:'4次元でほぼ健常に戻る。運ぶべき中身（位置と種類）が数次元しかないため。', m:[1.57,0.48,0.43]},
+  {k:'cut',     n:'脳梁を切る',           t:'メッセージを0にした。境界を越える物体は受け手の側で現れず、誤差は4倍になる。', m:[4.15,0.02,0.01]},
+  {k:'bmi_corr',n:'BMI・相関で校正',      t:'普通の活動の相関からリンクを決めた。半分しか戻らない。相関の方向は、受け手が実際に読んでいる方向とずれている。', m:[2.14,0.22,0.30]},
+  {k:'bmi_interv',n:'BMI・介入で校正',    t:'相手の状態を小さく揺らして応答を測り、その応答を再現するようにリンクを決めた。同じ4次元でこちらが上回る。', m:[1.79,0.34,0.37]},
+];
+let data = null, cond = 'intact', dream = false, trial = 0, step = 0, playing = true, slow = false, timer = null;
+
+const strips = {};
+for (const [id, n] of [['world',NC],['predL',W],['predR',W]]) {
+  const el = document.getElementById(id); strips[id] = [];
+  for (let i = 0; i < n; i++) { const c = document.createElement('div'); c.className = 'cell' + (id==='world'&&i===W-1?' mid-l':''); el.appendChild(c); strips[id].push(c); }
+}
+const condsEl = document.getElementById('conds');
+CONDS.forEach(c => { const b = document.createElement('button'); b.textContent = c.n; b.setAttribute('aria-pressed', c.k===cond);
+  b.onclick = () => { cond = c.k; step = 0; sync(); }; b.dataset.k = c.k; condsEl.appendChild(b); });
+
+const mbody = document.getElementById('measures');
+CONDS.forEach(c => { const tr = document.createElement('tr'); tr.dataset.k = c.k;
+  tr.innerHTML = `<td>${c.n}</td><td>${c.m[0].toFixed(2)}</td><td>${c.m[1].toFixed(2)}</td><td>${c.m[2].toFixed(2)}</td>` +
+    `<td><span class="bar"><i style="width:${Math.round(c.m[1]/0.49*100)}%"></i></span></td>`;
+  mbody.appendChild(tr); });
+
+function parse(s) { const o = []; for (let i = 0; i < s.length; i += 2) o.push([+s[i], +s[i+1]]); return o; }
+
+function paint() {
+  const key = cond + (dream ? '_dream' : '_wake');
+  const c = data && data.conditions[key]; if (!c) return;
+  const T = c.truth[trial].length; step = step % T;
+  const truth = parse(c.truth[trial][step]), seen = parse(c.seen[trial][step]);
+  const pL = parse(c.predL[trial][step]), pR = parse(c.predR[trial][step]);
+  const show = (cells, arr, off) => arr.forEach(([t, q], i) => {
+    const el = cells[i]; el.style.background = t ? TYPE[t] : '';
+    el.style.opacity = t ? (0.35 + 0.065 * q) : 1;
+    el.className = 'cell' + (off === 0 && i === W - 1 ? ' mid-l' : '');
+  });
+  show(strips.world, dream ? seen : truth, 0);
+  show(strips.predL, pL, 1); show(strips.predR, pR, 2);
+  // mark the two pixels next to the midline: did the receiver draw what is arriving from the other side?
+  const mark = (cells, i, want, got) => { if (!want) return;
+    cells[i].classList.add(got === want ? 'hit' : 'miss'); };
+  mark(strips.predR, 0, truth[W] ? truth[W][0] : 0, pR[0][0]);
+  mark(strips.predL, W - 1, truth[W - 1] ? truth[W - 1][0] : 0, pL[W - 1][0]);
+  document.getElementById('stepbox').textContent = `step ${step} / ${T - 1}` + (dream && step >= 10 ? '　観測なし' : '');
+  document.getElementById('trialbox').textContent = `試行 ${trial + 1} / ${data.n_trials}`;
+}
+
+function sync() {
+  document.querySelectorAll('#conds button').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === cond));
+  mbody.querySelectorAll('tr').forEach(tr => tr.classList.toggle('on', tr.dataset.k === cond));
+  const c = CONDS.find(x => x.k === cond);
+  document.getElementById('explain').innerHTML = `<b>${c.n}</b>　${c.t}` +
+    (dream ? '　<b>いま観測を断っている</b>：11ステップ目から、各半球は自分の予測だけを見て進む。上段は「その半球が見ていると思っている世界」になる。' : '');
+  paint();
+}
+
+document.getElementById('mode').onclick = (e) => { dream = !dream; e.target.setAttribute('aria-pressed', dream);
+  e.target.textContent = dream ? '観測を戻す' : '観測を断つ（夢）'; step = 0; sync(); };
+document.getElementById('play').onclick = (e) => { playing = !playing; e.target.setAttribute('aria-pressed', playing);
+  e.target.textContent = playing ? '一時停止' : '再生'; run(); };
+document.getElementById('slow').onclick = (e) => { slow = !slow; e.target.setAttribute('aria-pressed', slow); run(); };
+document.getElementById('trial').onclick = () => { trial = (trial + 1) % (data ? data.n_trials : 1); step = 0; paint(); };
+
+function run() { clearInterval(timer); if (!playing) return;
+  timer = setInterval(() => { step++; paint(); }, slow ? 620 : 260); }
+
+fetch('frames.json').then(r => r.json()).then(d => { data = d; sync(); run(); })
+  .catch(() => { document.getElementById('explain').textContent = 'フレームのデータを読み込めなかった。'; });
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { playing = false;
+  const b = document.getElementById('play'); b.setAttribute('aria-pressed', false); b.textContent = '再生'; }
+</script>
