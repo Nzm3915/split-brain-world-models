@@ -1,0 +1,69 @@
+{
+ "d0": {
+  "T2_committee": 0.4891465354436751,
+  "T2_shared": 0.6781658635760508,
+  "T1_committee": 0.951167748087602,
+  "T1_shared": 0.9801926600944806,
+  "T5_entry_ratio": 4.354056019915892,
+  "T8_wake": 0.015049656226126815,
+  "T8_dream": 0.00885328836424958,
+  "T7_recovery": 2,
+  "T7_recovery_link_cut": 2
+ },
+ "d1": {
+  "T2_committee": 0.4883462059512489,
+  "T2_shared": 0.7315137325927125,
+  "T1_committee": 0.9517473881731434,
+  "T1_shared": 0.9927268873897481,
+  "T5_entry_ratio": 2.9599292074582664,
+  "T8_wake": 0.2597402597402597,
+  "T8_dream": 0.31753232025402583,
+  "T7_recovery": 2,
+  "T7_recovery_link_cut": 2,
+  "channel_receiving": 0.9257613122463226,
+  "channel_correlated": 0.011197723959498633,
+  "channel_random": 0.020833333333333332
+ },
+ "d2": {
+  "T2_committee": 0.5059958021872571,
+  "T2_shared": 0.7044897285540253,
+  "T1_committee": 0.9520088411224116,
+  "T1_shared": 0.9943135004455539,
+  "T5_entry_ratio": 2.046603560658541,
+  "T8_wake": 0.3935064935064935,
+  "T8_dream": 0.35206303130831434,
+  "T7_recovery": 1,
+  "T7_recovery_link_cut": 2,
+  "channel_receiving": 0.9609614908695221,
+  "channel_correlated": 0.33461587938522963,
+  "channel_random": 0.041666666666666664
+ },
+ "d4": {
+  "T2_committee": 0.505707644420052,
+  "T2_shared": 0.7342156530434636,
+  "T1_committee": 0.9609042165472615,
+  "T1_shared": 0.997163196539469,
+  "T5_entry_ratio": 1.5742923923115197,
+  "T8_wake": 0.4782276546982429,
+  "T8_dream": 0.4336899303786721,
+  "T7_recovery": 1,
+  "T7_recovery_link_cut": 2,
+  "channel_receiving": 0.9267628192901611,
+  "channel_correlated": 0.3323697281314103,
+  "channel_random": 0.08333333333333333
+ },
+ "d16": {
+  "T2_committee": 0.5223377288682778,
+  "T2_shared": 0.6854589001578487,
+  "T1_committee": 0.9510488722868123,
+  "T1_shared": 0.9989053003071695,
+  "T5_entry_ratio": 1.406152830099558,
+  "T8_wake": 0.4885408708938121,
+  "T8_dream": 0.4475806451612903,
+  "T7_recovery": 2,
+  "T7_recovery_link_cut": 3,
+  "channel_receiving": 0.9121630787849426,
+  "channel_correlated": 0.4778146593071584,
+  "channel_random": 0.08333333333333333
+ }
+}
