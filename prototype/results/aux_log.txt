@@ -1,1 +1,19 @@
 d4_lam1.0 {"entry_ratio": 2.0471237855526847, "ordinary_err": 0.006282584944758967, "probes": {"T1": {"own_L": 0.9866077969622302, "own_R": 0.9915629992508864, "committee": 1.0, "shared": 0.9997079439252337, "chance": 0.5}, "T2": {"own_L": 0.9637512962160886, "own_R": 0.9670668570452613, "committee": 0.988110613495579, "shared": 1.0, "chance": 0.5}}, "sec": 2165.8487627506256}
+/usr/local/lib/python3.13/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (2000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (2000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (2000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (2000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (2000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (2000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (2000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (2000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+d0_lam1.0 {"entry_ratio": 4.216754879254021, "ordinary_err": 0.005665538175771732, "probes": {"T1": {"own_L": 0.7264655353990338, "own_R": 0.7477097966149123, "committee": 0.9418116364122637, "shared": 0.9776676655510033, "chance": 0.5}, "T2": {"own_L": 0.4861917983631734, "own_R": 0.4912634918459687, "committee": 0.4764521410639653, "shared": 0.6757079844138626, "chance": 0.5}}, "sec": 2949.857637643814}
+Terminated

@@ -21,6 +21,7 @@ python prototype/dream_consistency.py prototype/results           # T8: consiste
 python prototype/bmi_calibration.py prototype/results 16          # cut the link, replace it by a linear BMI:
 DRIVE_AMP=0.15 python prototype/bmi_calibration.py prototype/results 16   #   correlation- vs intervention-calibrated
 python prototype/aux_objective.py prototype/results/aux 3000      # H13: does the training objective decide what the link carries?
+python prototype/routing.py prototype/results 600                 # H8: connect a separately trained "machine" hemisphere
 python prototype/toy_overlap.py prototype/results/overlap 3000 2   # H7 in a world with common input (overlapping midline strip)
 python prototype/run_seeds.py prototype/results/seeds 3000        # replication over training seeds
 ```
@@ -31,6 +32,7 @@ python prototype/run_seeds.py prototype/results/seeds 3000        # replication 
 | Unity at the exit (committee readout, no link) | Detection (T1) at intact level; cross-midline same/different (T2) at chance. A shared readout solves T2 even without a link — a unified exit is not evidence of internal integration |
 | Do the mouse estimators find the true channel? | The silencing-derived (receiving) direction recovers 74–97% of the true channel at every width; the correlation-derived direction 1–52% |
 | Calibrating a BMI that replaces the cut link | Plain cross-correlation makes the loop diverge. With a hidden common drive in the recording, correlation-calibrated BMIs restore little integration; intervention-calibrated BMIs keep most of it |
+| Connecting a separately trained machine hemisphere (H8) | Unit-to-unit pairing by tuning similarity fails (consistency 0.02 vs 0.47 intact); population alignment works (0.25); closed-loop search over all link weights fails (0.02); alignment first, then closed-loop tuning of 4 gains reaches 0.37, near the backprop optimum (0.39) |
 | What does a prediction-trained link carry? | Only what the receiver's own future needs: even at d = 16 the committee T2 stays at chance (H13) |
 
 ## Related
