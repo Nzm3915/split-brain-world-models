@@ -31,6 +31,7 @@ python prototype/aux_objective.py prototype/results/aux 3000      # H13: does th
 python prototype/routing.py prototype/results 600                 # H8: connect a separately trained "machine" hemisphere
 python prototype/recovery.py prototype/results               # T7: recovery after silencing one hemisphere
 python prototype/benchmark.py prototype/results              # all five benchmark numbers for every saved model
+python prototype/bridge.py prototype/results                 # intervention-calibrated bridge, against callables
 python prototype/export_demo.py prototype/results demo/frames.json 6      # frames for the demo page
 python prototype/toy_overlap.py prototype/results/overlap 3000 2   # H7 in a world with common input (overlapping midline strip)
 python prototype/run_seeds.py prototype/results/seeds 3000        # replication over training seeds
@@ -41,6 +42,7 @@ python prototype/run_seeds.py prototype/results/seeds 3000        # replication 
 | Does the link width matter? | Midline-entry prediction error falls with link rank and saturates near d = 4 |
 | Unity at the exit (committee readout, no link) | Detection (T1) at intact level; cross-midline same/different (T2) at chance. A shared readout solves T2 even without a link — a unified exit is not evidence of internal integration |
 | Do the mouse estimators find the true channel? | The silencing-derived (receiving) direction recovers 74–98% of the true channel at every width and in every training seed; the correlation-derived direction 1–52% |
+| Intervention-calibrated bridge (pillar 2) | Written against three callables, so it can be pointed at any frozen pair. Self-test on the toy brain: agreement with the true link matrix 0.46 for the intervention-calibrated bridge vs 0.016 for the correlation-calibrated one (ceiling for a rank-4 bridge: 0.86) |
 | Replication over training seeds | Three seeds, d = 0/2/16: every direction holds — committee T2 at chance (0.47–0.51) while a shared readout reaches 0.67–0.72 without a link, and receiving beats correlated on the ground-truth channel in all of them |
 | Calibrating a BMI that replaces the cut link | Plain cross-correlation makes the loop diverge. With a hidden common drive in the recording, correlation-calibrated BMIs restore little integration; intervention-calibrated BMIs keep most of it |
 | Connecting a separately trained machine hemisphere (H8) | Unit-to-unit pairing by tuning similarity fails (consistency 0.02 vs 0.47 intact); population alignment works (0.25); closed-loop search over all link weights fails (0.02); alignment first, then closed-loop tuning of 4 gains reaches 0.37, near the backprop optimum (0.39) |

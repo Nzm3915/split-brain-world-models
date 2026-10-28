@@ -1,0 +1,9 @@
+{
+ "intervention_vs_true": 0.46083093186999025,
+ "correlation_vs_true": 0.015628960741442953,
+ "rank4_ceiling": 0.8590996861457825,
+ "intervention_over_ceiling": 0.5364114773891221,
+ "correlation_over_ceiling": 0.01819225521028865,
+ "scale_intervention": 1.3756435777405198,
+ "scale_correlation": 0.15267182415670125
+}
