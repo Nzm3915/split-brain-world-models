@@ -44,7 +44,7 @@ python prototype/run_seeds.py prototype/results/seeds 3000        # replication 
 | Connecting a separately trained machine hemisphere (H8) | Unit-to-unit pairing by tuning similarity fails (consistency 0.02 vs 0.47 intact); population alignment works (0.25); closed-loop search over all link weights fails (0.02); alignment first, then closed-loop tuning of 4 gains reaches 0.37, near the backprop optimum (0.39) |
 | Dream consistency with common input (H7) | In a world where each hemisphere also sees 2 pixels across the midline, the link adds nothing while awake (−0.06) and everything in the open-loop dream (+0.14): shared input alone makes two unconnected models look like one world. Measure integration with the input cut |
 | Recovery after silencing one hemisphere (T7) | 1-2 steps after 4 steps of complete silence; cutting the link slows it by one step and leaves 1.4x the normal error instead of 1.2x, so the link adds to recovery rather than writing the state back (as in the mouse data). A wider link also means a larger loss for the partner when it is cut |
-| What does a prediction-trained link carry? | Only what the receiver's own future needs: even at d = 16 the committee T2 stays at chance (H13) |
+| What does a prediction-trained link carry? (H13) | Only what the receiver's own future needs: even at d = 16 the committee T2 stays at chance. Adding an objective to name what is in the *other* half-field raises committee T2 from 0.51 to 0.99 through the same 4-dim link — and leaves it at 0.48 when there is no link. Integration needs both a channel and an objective, and it competes with prediction for the link's capacity (entry ratio 1.57 → 2.05) |
 
 ## Related
 
