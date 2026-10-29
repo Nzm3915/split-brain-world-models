@@ -1,0 +1,65 @@
+resnet18 -> resnet34: latents 512 -> 512, 4000 fit / 2000 eval images [85 s]
+  nuisance 0.0 rank   8: corr 0.168/+0.695  corr 0.169/+0.724  inte 0.022/+0.484  inte 0.018/+0.483  inte 0.171/+0.741  inte 0.003/+0.335  proc 0.058/+0.495
+  nuisance 0.0 rank  32: corr 0.304/+0.813  corr 0.279/+0.798  inte 0.076/+0.518  inte 0.080/+0.518  inte 0.359/+0.849  inte 0.003/+0.304  proc 0.091/+0.546
+  nuisance 0.0 rank 128: corr 0.407/+0.844  corr 0.421/+0.860  inte 0.308/+0.698  inte 0.308/+0.697  inte 0.649/+0.946  inte 0.005/+0.283  proc 0.218/+0.697
+  nuisance 0.0 rank 512: corr 0.459/+0.873  corr 0.459/+0.873  inte 0.752/+0.971  inte 0.750/+0.971  inte 0.750/+0.971  inte 0.004/+0.279  proc 0.568/+0.912
+    [100 s]
+  nuisance 1.0 rank   8: corr 0.137/+0.608  corr 0.169/+0.725  inte 0.022/+0.484  inte 0.018/+0.483  inte 0.171/+0.741  inte 0.003/+0.335  proc 0.018/+0.480
+  nuisance 1.0 rank  32: corr 0.278/+0.800  corr 0.271/+0.801  inte 0.076/+0.518  inte 0.080/+0.518  inte 0.359/+0.849  inte 0.003/+0.304  proc 0.081/+0.522
+  nuisance 1.0 rank 128: corr 0.409/+0.846  corr 0.419/+0.862  inte 0.308/+0.698  inte 0.308/+0.697  inte 0.649/+0.946  inte 0.005/+0.283  proc 0.215/+0.701
+  nuisance 1.0 rank 512: corr 0.461/+0.875  corr 0.461/+0.875  inte 0.752/+0.971  inte 0.750/+0.971  inte 0.750/+0.971  inte 0.004/+0.279  proc 0.551/+0.908
+    [112 s]
+  nuisance 4.0 rank   8: corr 0.143/+0.613  corr 0.174/+0.737  inte 0.022/+0.484  inte 0.018/+0.483  inte 0.171/+0.741  inte 0.003/+0.335  proc 0.041/+0.483
+  nuisance 4.0 rank  32: corr 0.274/+0.773  corr 0.298/+0.816  inte 0.076/+0.518  inte 0.080/+0.518  inte 0.359/+0.849  inte 0.003/+0.304  proc 0.066/+0.525
+  nuisance 4.0 rank 128: corr 0.422/+0.869  corr 0.427/+0.877  inte 0.308/+0.698  inte 0.308/+0.697  inte 0.649/+0.946  inte 0.005/+0.283  proc 0.238/+0.701
+  nuisance 4.0 rank 512: corr 0.458/+0.870  corr 0.454/+0.886  inte 0.752/+0.971  inte 0.750/+0.971  inte 0.750/+0.971  inte 0.004/+0.279  proc 0.549/+0.906
+    [124 s]
+resnet34 -> resnet18: latents 512 -> 512, 4000 fit / 2000 eval images [98 s]
+  nuisance 0.0 rank   8: corr 0.123/+0.698  corr 0.115/+0.706  inte 0.013/+0.478  inte 0.014/+0.477  inte 0.186/+0.710  inte 0.003/+0.379  proc 0.013/+0.490
+  nuisance 0.0 rank  32: corr 0.302/+0.807  corr 0.251/+0.790  inte 0.027/+0.504  inte 0.028/+0.504  inte 0.355/+0.821  inte 0.003/+0.350  proc 0.042/+0.542
+  nuisance 0.0 rank 128: corr 0.437/+0.867  corr 0.446/+0.854  inte 0.188/+0.634  inte 0.189/+0.633  inte 0.632/+0.933  inte 0.002/+0.328  proc 0.214/+0.689
+  nuisance 0.0 rank 512: corr 0.489/+0.867  corr 0.489/+0.867  inte 0.763/+0.966  inte 0.761/+0.966  inte 0.761/+0.966  inte 0.002/+0.324  proc 0.601/+0.908
+    [115 s]
+  nuisance 1.0 rank   8: corr 0.093/+0.633  corr 0.115/+0.708  inte 0.013/+0.478  inte 0.014/+0.477  inte 0.186/+0.710  inte 0.003/+0.379  proc 0.014/+0.475
+  nuisance 1.0 rank  32: corr 0.280/+0.792  corr 0.248/+0.792  inte 0.027/+0.504  inte 0.028/+0.504  inte 0.355/+0.821  inte 0.003/+0.350  proc 0.029/+0.518
+  nuisance 1.0 rank 128: corr 0.423/+0.842  corr 0.451/+0.856  inte 0.188/+0.634  inte 0.189/+0.633  inte 0.632/+0.933  inte 0.002/+0.328  proc 0.226/+0.688
+  nuisance 1.0 rank 512: corr 0.491/+0.869  corr 0.491/+0.869  inte 0.763/+0.966  inte 0.761/+0.966  inte 0.761/+0.966  inte 0.002/+0.324  proc 0.606/+0.904
+    [126 s]
+  nuisance 4.0 rank   8: corr 0.091/+0.633  corr 0.129/+0.721  inte 0.013/+0.478  inte 0.014/+0.477  inte 0.186/+0.710  inte 0.003/+0.379  proc 0.015/+0.475
+  nuisance 4.0 rank  32: corr 0.241/+0.764  corr 0.281/+0.807  inte 0.027/+0.504  inte 0.028/+0.504  inte 0.355/+0.821  inte 0.003/+0.350  proc 0.044/+0.517
+  nuisance 4.0 rank 128: corr 0.453/+0.863  corr 0.463/+0.870  inte 0.188/+0.634  inte 0.189/+0.633  inte 0.632/+0.933  inte 0.002/+0.328  proc 0.232/+0.692
+  nuisance 4.0 rank 512: corr 0.492/+0.878  corr 0.492/+0.878  inte 0.763/+0.966  inte 0.761/+0.966  inte 0.761/+0.966  inte 0.002/+0.324  proc 0.604/+0.903
+    [137 s]
+resnet18 -> mobilenet_v3_small: latents 512 -> 576, 4000 fit / 2000 eval images [42 s]
+  nuisance 0.0 rank   8: corr 0.136/+0.615  corr 0.116/+0.662  inte 0.024/+0.427  inte 0.043/+0.433  inte 0.145/+0.617  inte 0.000/+0.112
+  nuisance 0.0 rank  32: corr 0.222/+0.716  corr 0.225/+0.728  inte 0.027/+0.424  inte 0.039/+0.445  inte 0.220/+0.674  inte 0.000/+0.081
+  nuisance 0.0 rank 128: corr 0.315/+0.782  corr 0.303/+0.764  inte 0.081/+0.523  inte 0.097/+0.531  inte 0.328/+0.756  inte 0.000/+0.066
+  nuisance 0.0 rank 512: corr 0.325/+0.787  corr 0.324/+0.771  inte 0.357/+0.783  inte 0.360/+0.788  inte 0.360/+0.788  inte 0.000/+0.065
+    [58 s]
+  nuisance 1.0 rank   8: corr 0.083/+0.548  corr 0.119/+0.664  inte 0.024/+0.427  inte 0.043/+0.433  inte 0.145/+0.617  inte 0.000/+0.112
+  nuisance 1.0 rank  32: corr 0.203/+0.707  corr 0.223/+0.729  inte 0.027/+0.424  inte 0.039/+0.445  inte 0.220/+0.674  inte 0.000/+0.081
+  nuisance 1.0 rank 128: corr 0.296/+0.771  corr 0.307/+0.766  inte 0.081/+0.523  inte 0.097/+0.531  inte 0.328/+0.756  inte 0.000/+0.066
+  nuisance 1.0 rank 512: corr 0.318/+0.774  corr 0.318/+0.774  inte 0.357/+0.783  inte 0.360/+0.788  inte 0.360/+0.788  inte 0.000/+0.065
+    [69 s]
+  nuisance 4.0 rank   8: corr 0.083/+0.561  corr 0.128/+0.672  inte 0.024/+0.427  inte 0.043/+0.433  inte 0.145/+0.617  inte 0.000/+0.112
+  nuisance 4.0 rank  32: corr 0.180/+0.669  corr 0.232/+0.741  inte 0.027/+0.424  inte 0.039/+0.445  inte 0.220/+0.674  inte 0.000/+0.081
+  nuisance 4.0 rank 128: corr 0.306/+0.766  corr 0.325/+0.782  inte 0.081/+0.523  inte 0.097/+0.531  inte 0.328/+0.756  inte 0.000/+0.066
+  nuisance 4.0 rank 512: corr 0.344/+0.787  corr 0.344/+0.787  inte 0.357/+0.783  inte 0.360/+0.788  inte 0.360/+0.788  inte 0.000/+0.065
+    [80 s]
+mobilenet_v3_small -> resnet18: latents 576 -> 512, 4000 fit / 2000 eval images [32 s]
+  nuisance 0.0 rank   8: corr 0.123/+0.630  corr 0.095/+0.642  inte 0.016/+0.474  inte 0.015/+0.473  inte 0.126/+0.678  inte 0.001/+0.365
+  nuisance 0.0 rank  32: corr 0.182/+0.715  corr 0.173/+0.700  inte 0.034/+0.526  inte 0.035/+0.521  inte 0.214/+0.769  inte 0.001/+0.340
+  nuisance 0.0 rank 128: corr 0.234/+0.757  corr 0.229/+0.741  inte 0.182/+0.732  inte 0.181/+0.731  inte 0.352/+0.848  inte 0.001/+0.325
+  nuisance 0.0 rank 512: corr 0.244/+0.746  corr 0.242/+0.750  inte 0.423/+0.876  inte 0.413/+0.875  inte 0.413/+0.875  inte 0.001/+0.321
+    [48 s]
+  nuisance 1.0 rank   8: corr 0.087/+0.585  corr 0.101/+0.644  inte 0.016/+0.474  inte 0.015/+0.473  inte 0.126/+0.678  inte 0.001/+0.365
+  nuisance 1.0 rank  32: corr 0.174/+0.706  corr 0.172/+0.703  inte 0.034/+0.526  inte 0.035/+0.521  inte 0.214/+0.769  inte 0.001/+0.340
+  nuisance 1.0 rank 128: corr 0.230/+0.735  corr 0.235/+0.744  inte 0.182/+0.732  inte 0.181/+0.731  inte 0.352/+0.848  inte 0.001/+0.325
+  nuisance 1.0 rank 512: corr 0.242/+0.746  corr 0.240/+0.752  inte 0.423/+0.876  inte 0.413/+0.875  inte 0.413/+0.875  inte 0.001/+0.321
+    [59 s]
+  nuisance 4.0 rank   8: corr 0.102/+0.612  corr 0.103/+0.653  inte 0.016/+0.474  inte 0.015/+0.473  inte 0.126/+0.678  inte 0.001/+0.365
+  nuisance 4.0 rank  32: corr 0.168/+0.688  corr 0.187/+0.715  inte 0.034/+0.526  inte 0.035/+0.521  inte 0.214/+0.769  inte 0.001/+0.340
+  nuisance 4.0 rank 128: corr 0.239/+0.753  corr 0.240/+0.758  inte 0.182/+0.732  inte 0.181/+0.731  inte 0.352/+0.848  inte 0.001/+0.325
+  nuisance 4.0 rank 512: corr 0.245/+0.763  corr 0.245/+0.763  inte 0.423/+0.876  inte 0.413/+0.875  inte 0.413/+0.875  inte 0.001/+0.321
+    [71 s]
+done 418 s
