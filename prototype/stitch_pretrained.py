@@ -59,8 +59,9 @@ two modules' effects in a common currency. Correlational stitching instead tries
 have no such shared frame. That is the mouse project's claim in another setting: what a link has to carry is fixed
 by what the receiver does with it, and calibration needs a shared output, not a shared code.
 
-Images: CIFAR-10 upscaled to 128 px, used only as a stream of natural images - the ImageNet labels these models
-emit on them are beside the point, since the reference is model A's own output, not a ground truth.
+Images: a directory of photographs (imagenette, ten ImageNet classes) or, failing that, CIFAR-10 upscaled. They
+are used only as a stream of natural images: the reference is model A's own output, not a ground truth, so no
+label is read. The run reported in docs/02 uses the photographs.
 
 usage: python stitch_pretrained.py OUTDIR DATA_DIR [n_fit] [n_eval]
 """
@@ -78,7 +79,25 @@ torch.set_num_threads(max(1, os.cpu_count() or 1))
 
 
 def images(n, data_dir, px=PX, seed=0):
-    """n CIFAR-10 test images, upscaled and normalised the way the pretrained models expect"""
+    """n natural images, normalised the way the pretrained models expect.
+
+    A directory of JPEGs (imagenette: real photographs of ten ImageNet classes) if data_dir holds one, otherwise
+    the CIFAR-10 test set upscaled. Real photographs matter here beyond realism: on a 32 x 32 image upscaled to
+    128, an ImageNet model emits labels that mean nothing ("letter opener" for an aeroplane), so the agreement
+    between A and the stitched model is still well defined but nothing about it can be read off the labels."""
+    import glob
+    files = sorted(glob.glob(os.path.join(data_dir, '**', '*.JPEG'), recursive=True))
+    if files:
+        from PIL import Image
+        idx = np.random.default_rng(seed).permutation(len(files))[:n]
+        out = np.empty((len(idx), 3, px, px), np.float32)
+        for j, i in enumerate(idx):
+            im = Image.open(files[i]).convert('RGB')
+            w, h = im.size; sc = (px + 18) / min(w, h)
+            im = im.resize((max(px, int(round(w * sc))), max(px, int(round(h * sc)))), Image.BILINEAR)
+            w, h = im.size; l, t = (w - px) // 2, (h - px) // 2
+            out[j] = np.asarray(im.crop((l, t, l + px, t + px)), np.float32).transpose(2, 0, 1) / 255.0
+        return (torch.from_numpy(out) - MEAN) / STD
     from torchvision import datasets
     ds = datasets.CIFAR10(data_dir, train=False, download=False)
     idx = np.random.default_rng(seed).permutation(len(ds))[:n]
@@ -260,12 +279,22 @@ def run_pair(nameA, nameB, xf, xe, out):
             print(f'  nuisance {amp:3.1f} rank {k0:3d}: {line}', flush=True)
         print(f'    [{round(time.time()-t0)} s]', flush=True)
     out[res['pair']] = res
-    json.dump(out, open(os.path.join(OUT, 'stitch_pretrained.json'), 'w'), indent=1, default=float)
+    res['data_dir'] = DATA
+    json.dump(out, open(os.path.join(OUT, os.environ.get('STITCH_OUT', 'stitch_pretrained.json')), 'w'),
+              indent=1, default=float)
 
 
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True); t0 = time.time()
-    xf = images(N_FIT, DATA, seed=1); xe = images(N_EVAL, DATA, seed=2)
+    # fit and evaluation images must not overlap. With a photograph directory that has train/ and val/ the split is
+    # the dataset's own; otherwise (CIFAR) the evaluation images are drawn from the part of the permutation the fit
+    # did not use. (A first version drew both with different seeds from one pool, so about 15% of the evaluation
+    # images had also been fitted on - a leak that could only have helped the correlational baseline.)
+    tr, va = os.path.join(DATA, 'imagenette2-160', 'train'), os.path.join(DATA, 'imagenette2-160', 'val')
+    if os.path.isdir(tr) and os.path.isdir(va):
+        xf = images(N_FIT, tr, seed=1); xe = images(N_EVAL, va, seed=2)
+    else:
+        both = images(N_FIT + N_EVAL, DATA, seed=1); xf, xe = both[:N_FIT], both[N_FIT:]
     out = {}
     run_pair('resnet18', 'resnet34', xf, xe, out)
     run_pair('resnet34', 'resnet18', xf, xe, out)                  # the same pair the other way round
