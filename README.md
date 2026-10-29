@@ -34,6 +34,7 @@ python prototype/benchmark.py prototype/results              # all five benchmar
 python prototype/bridge.py prototype/results                 # intervention-calibrated bridge, against callables
 python prototype/stitch_frozen.py prototype/results/stitch 3000   # the same idea on two frozen autoencoders
 python prototype/stitch_mismatch.py prototype/results/stitch 3000 # conv encoder -> MLP decoder, different latent sizes
+python prototype/stitch_figure.py prototype/results/stitch 3000   # figure: what each calibration produces
 python prototype/export_demo.py prototype/results demo/frames.json 6      # frames for the demo page
 python prototype/toy_overlap.py prototype/results/overlap 3000 2   # H7 in a world with common input (overlapping midline strip)
 python prototype/run_seeds.py prototype/results/seeds 3000        # replication over training seeds
